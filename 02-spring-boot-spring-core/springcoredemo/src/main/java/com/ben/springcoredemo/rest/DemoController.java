@@ -1,6 +1,8 @@
-package com.ben.springcoredemo;
+package com.ben.springcoredemo.rest;
 
+import com.ben.springcoredemo.common.Coach;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,7 +13,8 @@ public class DemoController {
     private Coach myCoach;
 
     @Autowired
-    public DemoController(Coach theCoach){
+    public DemoController(@Qualifier("aquatic") Coach theCoach){
+        System.out.println("In Constructor: " + getClass().getSimpleName());
         myCoach=theCoach;
     }
 
@@ -19,4 +22,5 @@ public class DemoController {
     public String getDailyWorkout(){
         return myCoach.getDailyWorkout();
     }
+
 }
